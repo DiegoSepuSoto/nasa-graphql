@@ -10,7 +10,6 @@ import (
 	client "github.com/pzentenoe/httpclient-call-go"
 	"io/ioutil"
 	"net/http"
-	"os"
 )
 
 type nasaAPIRepository struct {
@@ -25,7 +24,6 @@ func (r *nasaAPIRepository) GetMarsRoverImages() ([]*models.Image, error) {
 
 	response, err := r.httpClient.
 		Headers(http.Header{"Content-Type": {"application/json; charset=UTF-8"}}).
-		Host(os.Getenv("NASA_API_HOST")).
 		Path("/rovers/curiosity/latest_photos").
 		Method("GET").
 		Params(utils.APIKeyParam()).
