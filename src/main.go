@@ -13,7 +13,7 @@ func main() {
 
 	imagesRepo := nasa.NewNasaAPIRepository(httpClient)
 
-	images, err := imagesRepo.GetMarsRoverImages()
+	images, err := imagesRepo.GetMarsRoverPhotos()
 
 	if err != nil {
 		fmt.Sprintln("something wrong happened calling the API")

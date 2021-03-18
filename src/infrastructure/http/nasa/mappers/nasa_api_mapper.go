@@ -19,7 +19,7 @@ func ImagesToDomain(apiResponse *entities.MarsRoverImages) []*models.Image {
 				ID:   photo.Rover.ID,
 				Name: photo.Rover.Name,
 			},
-			FormattedDate: photo.EarthDate,
+			Date: photo.EarthDate,
 		})
 	}
 
