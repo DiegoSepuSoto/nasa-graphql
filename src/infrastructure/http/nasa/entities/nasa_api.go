@@ -1,6 +1,6 @@
 package entities
 
-type MarsRoverImages struct {
+type MarsRoverPhotos struct {
 	LatestPhotos []LatestPhoto `json:"latest_photos"`
 }
 

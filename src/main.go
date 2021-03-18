@@ -11,13 +11,13 @@ import (
 func main() {
 	httpClient := client.NewHTTPClientCall(&http.Client{}).Host(os.Getenv("NASA_API_HOST"))
 
-	imagesRepo := nasa.NewNasaAPIRepository(httpClient)
+	photosRepo := nasa.NewNasaAPIRepository(httpClient)
 
-	images, err := imagesRepo.GetMarsRoverPhotos()
+	photos, err := photosRepo.GetMarsRoverPhotos()
 
 	if err != nil {
 		fmt.Sprintln("something wrong happened calling the API")
 	}
 
-	fmt.Println(images[0].Link)
+	fmt.Println(photos[0].Link)
 }

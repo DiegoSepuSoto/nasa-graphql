@@ -1,6 +1,6 @@
 package models
 
-type Image struct {
+type Photos struct {
 	Link   string `json:"link"`
 	Camera Camera `json:"camera"`
 	Rover  Rover  `json:"rover"`

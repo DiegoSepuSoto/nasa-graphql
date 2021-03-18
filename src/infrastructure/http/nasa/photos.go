@@ -20,7 +20,7 @@ func NewNasaAPIRepository(httpClient *client.HTTPClientCall) *nasaAPIRepository 
 	return &nasaAPIRepository{httpClient: httpClient}
 }
 
-func (r *nasaAPIRepository) GetMarsRoverPhotos() ([]*models.Image, error) {
+func (r *nasaAPIRepository) GetMarsRoverPhotos() ([]*models.Photos, error) {
 
 	response, err := r.httpClient.
 		Headers(http.Header{"Content-Type": {"application/json; charset=UTF-8"}}).
@@ -44,10 +44,10 @@ func (r *nasaAPIRepository) GetMarsRoverPhotos() ([]*models.Image, error) {
 		return nil, err2
 	}
 
-	var nasaAPIResponse *entities.MarsRoverImages
+	var nasaAPIResponse *entities.MarsRoverPhotos
 	if err3 := json.Unmarshal(data, &nasaAPIResponse); err3 != nil {
 		return nil, err3
 	}
 
-	return mappers.ImagesToDomain(nasaAPIResponse), nil
+	return mappers.PhotosToDomain(nasaAPIResponse), nil
 }
