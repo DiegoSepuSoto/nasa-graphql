@@ -28,12 +28,7 @@ func (u *photosUseCase) GetNasaPhotos() ([]*models.Photo, error) {
 			formattedDate = photo.Date
 		}
 
-		photo = &models.Photo{
-			Link:   photo.Link,
-			Camera: photo.Camera,
-			Rover:  photo.Rover,
-			Date:   formattedDate,
-		}
+		photo.Date = formattedDate
 	}
 
 	return photos, nil
