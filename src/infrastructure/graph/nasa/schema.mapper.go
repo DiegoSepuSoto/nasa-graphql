@@ -11,8 +11,8 @@ func PhotosToSchema(domainPhotos []*models.Photo) []*model.Photo {
 	for _, photo := range domainPhotos {
 		schemaPhotos = append(schemaPhotos, &model.Photo{
 			Link:   photo.Link,
-			Camera: nil,
-			Rover:  nil,
+			Camera: cameraToSchema(photo.Camera),
+			Rover:  roverToSchema(photo.Rover),
 			Date:   photo.Date,
 		})
 	}
@@ -20,14 +20,14 @@ func PhotosToSchema(domainPhotos []*models.Photo) []*model.Photo {
 	return schemaPhotos
 }
 
-func cameraToSchema(domainCamera *models.Camera) *model.Camera {
+func cameraToSchema(domainCamera models.Camera) *model.Camera {
 	return &model.Camera{
 		ID:   domainCamera.ID,
 		Name: domainCamera.Name,
 	}
 }
 
-func roverToSchema(domainRover *models.Rover) *model.Rover {
+func roverToSchema(domainRover models.Rover) *model.Rover {
 	return &model.Rover{
 		ID:   domainRover.ID,
 		Name: domainRover.Name,
