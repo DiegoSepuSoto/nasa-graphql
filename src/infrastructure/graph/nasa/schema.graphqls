@@ -1,10 +1,10 @@
 type Camera {
-    id: ID!
+    id: Int!
     name: String!
 }
 
 type Rover {
-    id: ID!
+    id: Int!
     name: String!
 }
 

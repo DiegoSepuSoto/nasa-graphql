@@ -3,7 +3,7 @@
 package model
 
 type Camera struct {
-	ID   string `json:"id"`
+	ID   int    `json:"id"`
 	Name string `json:"name"`
 }
 
@@ -15,6 +15,6 @@ type Photo struct {
 }
 
 type Rover struct {
-	ID   string `json:"id"`
+	ID   int    `json:"id"`
 	Name string `json:"name"`
 }

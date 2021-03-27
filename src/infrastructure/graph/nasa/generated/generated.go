@@ -196,13 +196,13 @@ func (ec *executionContext) introspectType(name string) (*introspection.Type, er
 }
 
 var sources = []*ast.Source{
-	{Name: "graph/schema.graphqls", Input: `type Camera {
-    id: ID!
+	{Name: "src/infrastructure/graph/nasa/schema.graphqls", Input: `type Camera {
+    id: Int!
     name: String!
 }
 
 type Rover {
-    id: ID!
+    id: Int!
     name: String!
 }
 
@@ -306,9 +306,9 @@ func (ec *executionContext) _Camera_id(ctx context.Context, field graphql.Collec
 		}
 		return graphql.Null
 	}
-	res := resTmp.(string)
+	res := resTmp.(int)
 	fc.Result = res
-	return ec.marshalNID2string(ctx, field.Selections, res)
+	return ec.marshalNInt2int(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Camera_name(ctx context.Context, field graphql.CollectedField, obj *model.Camera) (ret graphql.Marshaler) {
@@ -413,7 +413,7 @@ func (ec *executionContext) _Photo_camera(ctx context.Context, field graphql.Col
 	}
 	res := resTmp.(*model.Camera)
 	fc.Result = res
-	return ec.marshalNCamera2ᚖgithubᚗcomᚋdiegosepusotoᚋnasaᚑgraphᚑqlᚋgraphᚋmodelᚐCamera(ctx, field.Selections, res)
+	return ec.marshalNCamera2ᚖgithubᚗcomᚋdiegosepusotoᚋnasaᚑgraphᚑqlᚋsrcᚋinfrastructureᚋgraphᚋnasaᚋmodelᚐCamera(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Photo_rover(ctx context.Context, field graphql.CollectedField, obj *model.Photo) (ret graphql.Marshaler) {
@@ -448,7 +448,7 @@ func (ec *executionContext) _Photo_rover(ctx context.Context, field graphql.Coll
 	}
 	res := resTmp.(*model.Rover)
 	fc.Result = res
-	return ec.marshalNRover2ᚖgithubᚗcomᚋdiegosepusotoᚋnasaᚑgraphᚑqlᚋgraphᚋmodelᚐRover(ctx, field.Selections, res)
+	return ec.marshalNRover2ᚖgithubᚗcomᚋdiegosepusotoᚋnasaᚑgraphᚑqlᚋsrcᚋinfrastructureᚋgraphᚋnasaᚋmodelᚐRover(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Photo_date(ctx context.Context, field graphql.CollectedField, obj *model.Photo) (ret graphql.Marshaler) {
@@ -518,7 +518,7 @@ func (ec *executionContext) _Query_photos(ctx context.Context, field graphql.Col
 	}
 	res := resTmp.([]*model.Photo)
 	fc.Result = res
-	return ec.marshalNPhoto2ᚕᚖgithubᚗcomᚋdiegosepusotoᚋnasaᚑgraphᚑqlᚋgraphᚋmodelᚐPhotoᚄ(ctx, field.Selections, res)
+	return ec.marshalNPhoto2ᚕᚖgithubᚗcomᚋdiegosepusotoᚋnasaᚑgraphᚑqlᚋsrcᚋinfrastructureᚋgraphᚋnasaᚋmodelᚐPhotoᚄ(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Query___type(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -622,9 +622,9 @@ func (ec *executionContext) _Rover_id(ctx context.Context, field graphql.Collect
 		}
 		return graphql.Null
 	}
-	res := resTmp.(string)
+	res := resTmp.(int)
 	fc.Result = res
-	return ec.marshalNID2string(ctx, field.Selections, res)
+	return ec.marshalNInt2int(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Rover_name(ctx context.Context, field graphql.CollectedField, obj *model.Rover) (ret graphql.Marshaler) {
@@ -2167,7 +2167,7 @@ func (ec *executionContext) marshalNBoolean2bool(ctx context.Context, sel ast.Se
 	return res
 }
 
-func (ec *executionContext) marshalNCamera2ᚖgithubᚗcomᚋdiegosepusotoᚋnasaᚑgraphᚑqlᚋgraphᚋmodelᚐCamera(ctx context.Context, sel ast.SelectionSet, v *model.Camera) graphql.Marshaler {
+func (ec *executionContext) marshalNCamera2ᚖgithubᚗcomᚋdiegosepusotoᚋnasaᚑgraphᚑqlᚋsrcᚋinfrastructureᚋgraphᚋnasaᚋmodelᚐCamera(ctx context.Context, sel ast.SelectionSet, v *model.Camera) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "must not be null")
@@ -2177,13 +2177,13 @@ func (ec *executionContext) marshalNCamera2ᚖgithubᚗcomᚋdiegosepusotoᚋnas
 	return ec._Camera(ctx, sel, v)
 }
 
-func (ec *executionContext) unmarshalNID2string(ctx context.Context, v interface{}) (string, error) {
-	res, err := graphql.UnmarshalID(v)
+func (ec *executionContext) unmarshalNInt2int(ctx context.Context, v interface{}) (int, error) {
+	res, err := graphql.UnmarshalInt(v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) marshalNID2string(ctx context.Context, sel ast.SelectionSet, v string) graphql.Marshaler {
-	res := graphql.MarshalID(v)
+func (ec *executionContext) marshalNInt2int(ctx context.Context, sel ast.SelectionSet, v int) graphql.Marshaler {
+	res := graphql.MarshalInt(v)
 	if res == graphql.Null {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "must not be null")
@@ -2192,7 +2192,7 @@ func (ec *executionContext) marshalNID2string(ctx context.Context, sel ast.Selec
 	return res
 }
 
-func (ec *executionContext) marshalNPhoto2ᚕᚖgithubᚗcomᚋdiegosepusotoᚋnasaᚑgraphᚑqlᚋgraphᚋmodelᚐPhotoᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.Photo) graphql.Marshaler {
+func (ec *executionContext) marshalNPhoto2ᚕᚖgithubᚗcomᚋdiegosepusotoᚋnasaᚑgraphᚑqlᚋsrcᚋinfrastructureᚋgraphᚋnasaᚋmodelᚐPhotoᚄ(ctx context.Context, sel ast.SelectionSet, v []*model.Photo) graphql.Marshaler {
 	ret := make(graphql.Array, len(v))
 	var wg sync.WaitGroup
 	isLen1 := len(v) == 1
@@ -2216,7 +2216,7 @@ func (ec *executionContext) marshalNPhoto2ᚕᚖgithubᚗcomᚋdiegosepusotoᚋn
 			if !isLen1 {
 				defer wg.Done()
 			}
-			ret[i] = ec.marshalNPhoto2ᚖgithubᚗcomᚋdiegosepusotoᚋnasaᚑgraphᚑqlᚋgraphᚋmodelᚐPhoto(ctx, sel, v[i])
+			ret[i] = ec.marshalNPhoto2ᚖgithubᚗcomᚋdiegosepusotoᚋnasaᚑgraphᚑqlᚋsrcᚋinfrastructureᚋgraphᚋnasaᚋmodelᚐPhoto(ctx, sel, v[i])
 		}
 		if isLen1 {
 			f(i)
@@ -2229,7 +2229,7 @@ func (ec *executionContext) marshalNPhoto2ᚕᚖgithubᚗcomᚋdiegosepusotoᚋn
 	return ret
 }
 
-func (ec *executionContext) marshalNPhoto2ᚖgithubᚗcomᚋdiegosepusotoᚋnasaᚑgraphᚑqlᚋgraphᚋmodelᚐPhoto(ctx context.Context, sel ast.SelectionSet, v *model.Photo) graphql.Marshaler {
+func (ec *executionContext) marshalNPhoto2ᚖgithubᚗcomᚋdiegosepusotoᚋnasaᚑgraphᚑqlᚋsrcᚋinfrastructureᚋgraphᚋnasaᚋmodelᚐPhoto(ctx context.Context, sel ast.SelectionSet, v *model.Photo) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "must not be null")
@@ -2239,7 +2239,7 @@ func (ec *executionContext) marshalNPhoto2ᚖgithubᚗcomᚋdiegosepusotoᚋnasa
 	return ec._Photo(ctx, sel, v)
 }
 
-func (ec *executionContext) marshalNRover2ᚖgithubᚗcomᚋdiegosepusotoᚋnasaᚑgraphᚑqlᚋgraphᚋmodelᚐRover(ctx context.Context, sel ast.SelectionSet, v *model.Rover) graphql.Marshaler {
+func (ec *executionContext) marshalNRover2ᚖgithubᚗcomᚋdiegosepusotoᚋnasaᚑgraphᚑqlᚋsrcᚋinfrastructureᚋgraphᚋnasaᚋmodelᚐRover(ctx context.Context, sel ast.SelectionSet, v *model.Rover) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "must not be null")

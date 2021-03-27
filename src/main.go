@@ -1,12 +1,12 @@
 package main
 
 import (
-	"fmt"
 	"github.com/99designs/gqlgen/graphql/handler"
 	"github.com/99designs/gqlgen/graphql/playground"
-	nasa2 "github.com/diegosepusoto/nasa-graph-ql/src/infrastructure/graph/nasa"
+	useCase "github.com/diegosepusoto/nasa-graph-ql/src/application/usecase/photos"
+	graphqlNasa "github.com/diegosepusoto/nasa-graph-ql/src/infrastructure/graph/nasa"
 	"github.com/diegosepusoto/nasa-graph-ql/src/infrastructure/graph/nasa/generated"
-	"github.com/diegosepusoto/nasa-graph-ql/src/infrastructure/http/nasa"
+	httpNasa "github.com/diegosepusoto/nasa-graph-ql/src/infrastructure/http/nasa"
 	client "github.com/pzentenoe/httpclient-call-go"
 	"log"
 	"net/http"
@@ -16,13 +16,13 @@ import (
 func main() {
 	httpClient := client.NewHTTPClientCall(&http.Client{}).Host(os.Getenv("NASA_API_HOST"))
 
-	photosRepo := nasa.NewNasaAPIRepository(httpClient)
+	photosRepo := httpNasa.NewNasaAPIRepository(httpClient)
 
-	photos, _ := photosRepo.GetMarsRoverPhotos()
+	photosUseCase := useCase.NewPhotosUseCase(photosRepo)
 
-	fmt.Println(photos[0].Link)
+	photosResolver := graphqlNasa.NewPhotosResolver(photosUseCase)
 
-	srv := handler.NewDefaultServer(generated.NewExecutableSchema(generated.Config{Resolvers: &nasa2.Resolver{}}))
+	srv := handler.NewDefaultServer(generated.NewExecutableSchema(generated.Config{Resolvers: photosResolver}))
 
 	http.Handle("/", playground.Handler("GraphQL playground", "/query"))
 	http.Handle("/query", srv)
