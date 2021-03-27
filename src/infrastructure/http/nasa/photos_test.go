@@ -9,7 +9,7 @@ import (
 	"testing"
 )
 
-var expectedPhotos = []*models.Photos{
+var expectedPhotos = []*models.Photo{
 	{
 		Link:          "https://mars.nasa.gov/msl-raw-photos/proj/msl/redops/ods/surface/sol/03061/opgs/edr/ccam/CR0_669228842EDR_F0870792CCAM01061M_.JPG",
 		Camera:        models.Camera{

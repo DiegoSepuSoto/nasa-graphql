@@ -15,7 +15,7 @@ func NewPhotosUseCase(nasaAPIRepository repositories.MarsRoverPhotosRepository) 
 	return &photosUseCase{nasaAPIRepository: nasaAPIRepository}
 }
 
-func (u *photosUseCase) GetNasaPhotos() ([]*models.Photos, error) {
+func (u *photosUseCase) GetNasaPhotos() ([]*models.Photo, error) {
 	photos, err := u.nasaAPIRepository.GetMarsRoverPhotos()
 	if err != nil {
 		return nil, err
@@ -28,7 +28,7 @@ func (u *photosUseCase) GetNasaPhotos() ([]*models.Photos, error) {
 			formattedDate = photo.Date
 		}
 
-		photo = &models.Photos{
+		photo = &models.Photo{
 			Link:   photo.Link,
 			Camera: photo.Camera,
 			Rover:  photo.Rover,

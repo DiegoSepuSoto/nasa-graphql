@@ -1,0 +1,20 @@
+type Camera {
+    id: ID!
+    name: String!
+}
+
+type Rover {
+    id: ID!
+    name: String!
+}
+
+type Photo {
+    link: String!
+    camera: Camera!
+    rover: Rover!
+    date: String!
+}
+
+type Query {
+    photos: [Photo!]!
+}
