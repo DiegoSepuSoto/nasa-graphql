@@ -2,20 +2,21 @@ package photos
 
 import (
 	"fmt"
+
 	"github.com/diegosepusoto/nasa-graph-ql/src/domain/models"
 	"github.com/diegosepusoto/nasa-graph-ql/src/domain/repositories"
 	"github.com/diegosepusoto/nasa-graph-ql/src/utils"
 )
 
-type photosUseCase struct {
+type UseCase struct {
 	nasaAPIRepository repositories.MarsRoverPhotosRepository
 }
 
-func NewPhotosUseCase(nasaAPIRepository repositories.MarsRoverPhotosRepository) *photosUseCase {
-	return &photosUseCase{nasaAPIRepository: nasaAPIRepository}
+func NewPhotosUseCase(nasaAPIRepository repositories.MarsRoverPhotosRepository) *UseCase {
+	return &UseCase{nasaAPIRepository: nasaAPIRepository}
 }
 
-func (u *photosUseCase) GetNasaPhotos() ([]*models.Photo, error) {
+func (u *UseCase) GetNasaPhotos() ([]*models.Photo, error) {
 	photos, err := u.nasaAPIRepository.GetMarsRoverPhotos()
 	if err != nil {
 		return nil, err
@@ -24,7 +25,7 @@ func (u *photosUseCase) GetNasaPhotos() ([]*models.Photo, error) {
 	for _, photo := range photos {
 		formattedDate, err := utils.FormatDate(photo.Date, utils.DateYMDFormatHyphen, utils.DateDMYFormatSlash)
 		if err != nil {
-			fmt.Sprintf("could not format date: %s", photo.Date)
+			fmt.Printf("could not format date: %s", photo.Date)
 			formattedDate = photo.Date
 		}
 

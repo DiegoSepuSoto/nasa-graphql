@@ -6,8 +6,8 @@ import (
 )
 
 const (
-	dateYMDFormatHyphen = "2021-03-17"
-	dateDMYFormatSlash = "17/03/2021"
+	dateYMDFormatHyphen       = "2021-03-17"
+	dateDMYFormatSlash        = "17/03/2021"
 	dateWithErrorFormatHyphen = "2021&03&17"
 )
 

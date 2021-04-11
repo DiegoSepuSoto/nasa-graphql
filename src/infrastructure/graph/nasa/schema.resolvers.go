@@ -5,6 +5,7 @@ package nasa
 
 import (
 	"context"
+
 	"github.com/diegosepusoto/nasa-graph-ql/src/infrastructure/graph/nasa/generated"
 	"github.com/diegosepusoto/nasa-graph-ql/src/infrastructure/graph/nasa/model"
 )

@@ -8,18 +8,18 @@ import (
 func PhotosToDomain(apiResponse *entities.MarsRoverPhotos) []*models.Photo {
 	photos := make([]*models.Photo, 0)
 
-	for _, photo := range apiResponse.LatestPhotos {
+	for i := range apiResponse.LatestPhotos {
 		photos = append(photos, &models.Photo{
-			Link: photo.ImgSrc,
+			Link: apiResponse.LatestPhotos[i].ImgSrc,
 			Camera: models.Camera{
-				ID:   photo.Camera.ID,
-				Name: photo.Camera.FullName,
+				ID:   apiResponse.LatestPhotos[i].Camera.ID,
+				Name: apiResponse.LatestPhotos[i].Camera.FullName,
 			},
-			Rover:         models.Rover{
-				ID:   photo.Rover.ID,
-				Name: photo.Rover.Name,
+			Rover: models.Rover{
+				ID:   apiResponse.LatestPhotos[i].Rover.ID,
+				Name: apiResponse.LatestPhotos[i].Rover.Name,
 			},
-			Date: photo.EarthDate,
+			Date: apiResponse.LatestPhotos[i].EarthDate,
 		})
 	}
 

@@ -1,16 +1,18 @@
 package main
 
 import (
+	"log"
+	"net/http"
+	"os"
+
 	"github.com/99designs/gqlgen/graphql/handler"
 	"github.com/99designs/gqlgen/graphql/playground"
+	client "github.com/pzentenoe/httpclient-call-go"
+
 	useCase "github.com/diegosepusoto/nasa-graph-ql/src/application/usecase/photos"
 	graphqlNasa "github.com/diegosepusoto/nasa-graph-ql/src/infrastructure/graph/nasa"
 	"github.com/diegosepusoto/nasa-graph-ql/src/infrastructure/graph/nasa/generated"
 	httpNasa "github.com/diegosepusoto/nasa-graph-ql/src/infrastructure/http/nasa"
-	client "github.com/pzentenoe/httpclient-call-go"
-	"log"
-	"net/http"
-	"os"
 )
 
 func main() {

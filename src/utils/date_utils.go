@@ -4,10 +4,10 @@ import "time"
 
 const (
 	DateYMDFormatHyphen = "2006-01-02"
-	DateDMYFormatSlash = "02/01/2006"
+	DateDMYFormatSlash  = "02/01/2006"
 )
 
-func FormatDate(inputDateString string, inputFormat string, outputFormat string) (string, error) {
+func FormatDate(inputDateString, inputFormat, outputFormat string) (string, error) {
 	inputDate, err := time.Parse(inputFormat, inputDateString)
 	if err != nil {
 		return "", err

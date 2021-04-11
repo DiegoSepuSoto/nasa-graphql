@@ -3,25 +3,25 @@ package nasa
 import (
 	"encoding/json"
 	"errors"
+	"io/ioutil"
+	"net/http"
+
 	"github.com/diegosepusoto/nasa-graph-ql/src/domain/models"
 	"github.com/diegosepusoto/nasa-graph-ql/src/infrastructure/http/nasa/entities"
 	"github.com/diegosepusoto/nasa-graph-ql/src/infrastructure/http/nasa/mappers"
 	"github.com/diegosepusoto/nasa-graph-ql/src/infrastructure/http/nasa/utils"
 	client "github.com/pzentenoe/httpclient-call-go"
-	"io/ioutil"
-	"net/http"
 )
 
-type nasaAPIRepository struct {
+type APIRepository struct {
 	httpClient *client.HTTPClientCall
 }
 
-func NewNasaAPIRepository(httpClient *client.HTTPClientCall) *nasaAPIRepository {
-	return &nasaAPIRepository{httpClient: httpClient}
+func NewNasaAPIRepository(httpClient *client.HTTPClientCall) *APIRepository {
+	return &APIRepository{httpClient: httpClient}
 }
 
-func (r *nasaAPIRepository) GetMarsRoverPhotos() ([]*models.Photo, error) {
-
+func (r *APIRepository) GetMarsRoverPhotos() ([]*models.Photo, error) {
 	response, err := r.httpClient.
 		Headers(http.Header{"Content-Type": {"application/json; charset=UTF-8"}}).
 		Path("/rovers/curiosity/latest_photos").
@@ -35,7 +35,7 @@ func (r *nasaAPIRepository) GetMarsRoverPhotos() ([]*models.Photo, error) {
 
 	defer response.Body.Close()
 
-	if response.StatusCode != 200 {
+	if response.StatusCode != http.StatusOK {
 		return nil, errors.New("the server answered with a wrong http status code")
 	}
 
